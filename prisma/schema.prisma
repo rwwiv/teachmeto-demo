@@ -6,13 +6,66 @@ generator client {
 }
 
 datasource db {
-    provider = "sqlite"
+    provider = "postgres"
     url      = env("DATABASE_URL")
 }
 
-model Example {
-    id        String   @id @default(cuid())
-    compare   String   @unique
-    createdAt DateTime @default(now())
-    updatedAt DateTime @updatedAt
+enum Role {
+    USER
+    INSTRUCTOR
+}
+
+// This model ignores auth, DO NOT USE
+model User {
+    id         String      @id @default(cuid())
+    createdAt  DateTime    @default(now())
+    updatedAt  DateTime    @updatedAt
+    firstName  String
+    lastName   String
+    email      String      @unique
+    profileImg String?
+    role       Role
+    customer   Customer?
+    instructor Instructor?
+}
+
+model Customer {
+    id      String   @id @default(cuid())
+    user    User     @relation(fields: [userId], references: [id])
+    userId  String   @unique
+    reviews Review[]
+}
+
+model Instructor {
+    id       String     @id @default(cuid())
+    user     User       @relation(fields: [userId], references: [id])
+    userId   String     @unique
+    verified Boolean?
+    listings Listing[]
+    openings DateTime[] // Simplification for demo purposes
+}
+
+model Review {
+    id         String   @id @default(cuid())
+    createdAt  DateTime @default(now())
+    updatedAt  DateTime @updatedAt
+    listing    Listing  @relation(fields: [listingId], references: [id])
+    listingId  String
+    score      Int
+    title      String?
+    content    String?
+    customer   Customer @relation(fields: [customerId], references: [id])
+    customerId String
+}
+
+model Listing {
+    id               String     @id @default(cuid())
+    createdAt        DateTime   @default(now())
+    updatedAt        DateTime   @updatedAt
+    instructor       Instructor @relation(fields: [instructorId], references: [id])
+    instructorId     String
+    title            String
+    reviews          Review[]
+    description      String
+    sessionLengthMin Int
 }

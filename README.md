@@ -1,28 +1,50 @@
-# Create T3 App
+# TeachMe.To Demo Application
 
-This is a [T3 Stack](https://create.t3.gg/) project bootstrapped with `create-t3-app`.
+This demo application for teachme.to is a TypeScript [T3 stack](https://create.t3.gg/) app using the following:
 
-## What's next? How do I make an app with this?
+- [Prisma](https://www.prisma.io/) (PostgreSQL backend)
+- [Chakra UI](https://chakra-ui.com/)
+- [tRPC](https://trpc.io/)
 
-We try to keep this project as simple as possible, so you can start with just the scaffolding we set up for you, and add additional things later when they become necessary.
+## Setup
 
-If you are not familiar with the different technologies used in this project, please refer to the respective docs. If you still are in the wind, please join our [Discord](https://t3.gg/discord) and ask for help.
+1. Copy `.env.example` to a new `.env` file
+    > **_Note:_** this app assumes access to a PostgreSQL database as defined in the .env.example file)
 
-- [Next.js](https://nextjs.org)
-- [NextAuth.js](https://next-auth.js.org)
-- [Prisma](https://prisma.io)
-- [Tailwind CSS](https://tailwindcss.com)
-- [tRPC](https://trpc.io)
+    ```sh
+    cp .env.example .env
+    ```
 
-## Learn More
+2. Install project dependencies
 
-To learn more about the [T3 Stack](https://create.t3.gg/), take a look at the following resources:
+    ```sh
+    npm install
+    ```
 
-- [Documentation](https://create.t3.gg/)
-- [Learn the T3 Stack](https://create.t3.gg/en/faq#what-learning-resources-are-currently-available) — Check out these awesome tutorials
+3. Run any Prisma migrations
+    > _This will also seed the database with expected values_
 
-You can check out the [create-t3-app GitHub repository](https://github.com/t3-oss/create-t3-app) — your feedback and contributions are welcome!
+    ```sh
+    npx prisma migrate dev
+    ```
 
-## How do I deploy this?
+4. Run application
+    > _By default the app will run on localhost:3000_
 
-Follow our deployment guides for [Vercel](https://create.t3.gg/en/deployment/vercel), [Netlify](https://create.t3.gg/en/deployment/netlify) and [Docker](https://create.t3.gg/en/deployment/docker) for more information.
+    ```sh
+    npm run dev
+    ```
+
+## Notable Simplifications
+
+This demo app makes some concessions to simplicity that would not be viable in a real application. Some of these are listed below:
+
+- Availability for an instructor is a simple list of Datetime objects in the database schema.
+- Users are stubs without auth fields.
+- The app has no useful landing page
+- Listing images are static and not tied to the listing model
+- The thumbnail for the listing video is a static image served locally
+- The 404 page follows the system theme but the rest of the app does not
+- Most buttons simply alert on click
+- Time panel is simply at bottom of page on mobile
+- Extra listing images are hidden on mobile
