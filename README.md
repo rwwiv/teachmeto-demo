@@ -41,10 +41,10 @@ This demo app makes some concessions to simplicity that would not be viable in a
 
 - Availability for an instructor is a simple list of Datetime objects in the database schema.
 - Users are stubs without auth fields.
-- The app has no useful landing page
-- Listing images are static and not tied to the listing model
-- The thumbnail for the listing video is a static image served locally
-- The 404 page follows the system theme but the rest of the app does not
-- Most buttons simply alert on click
-- Time panel is simply at bottom of page on mobile
-- Extra listing images are hidden on mobile
+- The app has no useful landing page.
+- Listing images are static and not tied to the listing model.
+- The thumbnail for the listing video is a static image served locally.
+- The 404 page follows the system theme but the rest of the app does not.
+- Most buttons simply alert on click.
+- Time panel is simply at bottom of page on mobile.
+- Extra listing images are hidden on mobile.
