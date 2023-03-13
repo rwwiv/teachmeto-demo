@@ -41,10 +41,7 @@ const ListingPage = ({ router }: ListingPageProps) => {
       >
         <Flex gap="3" justifyContent="center">
           {/* Stand in for video */}
-          <ListingVideo
-            thumbSrc="/vid-thumb.png"
-            videoSrc="https://cdn.pixabay.com/vimeo/728292591/surf-123523.mp4?rendition=source&expiry=1678726151&hash=566cc2c52ddcfcbeba5153e7844686ac98f5cbc9"
-          />
+          <ListingVideo thumbSrc="/vid-thumb.png" videoSrc="/surf-123523.mp4" />
           <Box flexDir="column" display={["none", "flex"]} gap="3" width="1/2">
             <Image
               rounded="lg"
