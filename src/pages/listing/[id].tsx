@@ -17,7 +17,7 @@ type ListingPageProps = WithRouterProps;
 
 const ListingPage = ({ router }: ListingPageProps) => {
   const { id } = router.query;
-  const { data: listing } = api.listing.getSingle.useQuery({
+  const { data: listing, isLoading } = api.listing.getSingle.useQuery({
     listingId: id ? (id as string) : "",
   });
 
@@ -74,15 +74,11 @@ const ListingPage = ({ router }: ListingPageProps) => {
           </Box>
         </Flex>
         <Box>
-          {listing ? (
-            <InstructorCard
-              title={listing.title}
-              listingId={listing.id}
-              instructorId={listing.instructorId}
-            />
-          ) : (
-            <></>
-          )}
+          <InstructorCard
+            title={listing?.title}
+            listingId={listing?.id}
+            instructorId={listing?.instructorId}
+          />
         </Box>
         <Box pb="8" pt="4" borderBottom="1px" borderColor="gray.200">
           <ReviewsPreview listingId={listing?.id} />
