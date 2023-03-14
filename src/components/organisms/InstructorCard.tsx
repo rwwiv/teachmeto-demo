@@ -68,14 +68,16 @@ const InstructorCard = ({
             )}
           </Flex>
           <Spacer my={[2, 0]} />
-          <Button
-            bg="white"
-            fontSize={["md", "xs"]}
-            fontWeight="600"
-            onClick={() => alert("Clicked ask a question")}
-          >
-            Ask a question
-          </Button>
+          <Skeleton isLoaded={!instructorLoading}>
+            <Button
+              bg="white"
+              fontSize={["md", "xs"]}
+              fontWeight="600"
+              onClick={() => alert("Clicked ask a question")}
+            >
+              Ask a question
+            </Button>
+          </Skeleton>
         </Flex>
       </Grid>
     </Box>
